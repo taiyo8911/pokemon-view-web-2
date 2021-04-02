@@ -1,0 +1,30 @@
+/*--- table css ---*/
+.sorttbl {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    display: table;
+}
+
+.sorttbl th {
+    color: #fff!important;
+    background-color: #616161!important;
+}
+
+.sorttbl tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+    border-bottom: 1px solid #ddd;
+}
+
+.sorttbl th:first-child, .sorttbl td:first-child {
+    padding-left: 16px;
+}
+
+.sorttbl td, .sorttbl th {
+    padding: 8px 8px;
+    display: table-cell;
+    text-align: left;
+    vertical-align: middle;
+}
