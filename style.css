@@ -1,12 +1,61 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(243, 241, 241);
+}
+
+h1 {
+    text-align: center;
+}
+
+.outline {
+    color: #fff200;
+    font-size: 36pt;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 1px #1a1aff, -2px 2px 1px #1a1aff, 2px -2px 1px #1a1aff, -2px -2px 1px #1a1aff, 2px 0px 1px #1a1aff, 0px 2px 1px #1a1aff, -2px 0px 1px #1a1aff, 0px -2px 1px #1a1aff;
+}
 
 img {
     width: 60px;
 }
 
-#type{
+a {
+    text-decoration: none;
+}
+
+th {
     cursor: pointer;
 }
 
+
+/*--- table ---*/
+.tbl {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 90%;
+    display: table;
+    margin: 0 auto;
+}
+
+.tbl th {
+    background-color: wheat!important;
+    border: 1px solid white;
+}
+
+.tbl tr {
+    display: table-row;
+    vertical-align: inherit;
+    border: 1px solid white;
+}
+
+.tbl td, .tbl th {
+    padding: 8px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* 
 .grass {
     background-color: #0EAE09;
     display: inline-block;
@@ -111,4 +160,4 @@ img {
     display: inline-block;
     border: 2px solid black;
     padding: 10px;
-}
+} */

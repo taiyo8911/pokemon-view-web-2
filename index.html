@@ -6,8 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="table.css">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <title>ポケモンWeb図鑑2</title>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -16,18 +14,17 @@
 </head>
 
 <body>
-    <h1>ポケモンWeb図鑑2</h1>
-    <table class="sorttbl" id="myTable">
+    <h1><a href=""><span class="outline">ポケモンWeb図鑑2</span></a></h1>
+    <table class="tbl" id="myTable">
         <tr>
           <th></th>
           <th>図鑑番号</th>
-          <th>日本語名</th>
           <th>英語名</th>
-          <th id="type" onclick="w3.sortHTML('#myTable','.item', 'td:nth-child(5)')">タイプ<i class="fa fa-sort"></i></th>
+          <th id="height" onclick="w3.sortHTML('#myTable','.item', 'td:nth-child(4)')">たかさ(m)▲▼</th>
+          <th id="weight" onclick="w3.sortHTML('#myTable','.item', 'td:nth-child(5)')">おもさ(kg)▲▼</th>
+          <th id="type" onclick="w3.sortHTML('#myTable','.item', 'td:nth-child(6)')">タイプ▲▼</th>
         </tr>
     </table>
-
-    <!-- <script src="main.js"></script> -->
     <script src="table.js"></script>
 </body>
 
