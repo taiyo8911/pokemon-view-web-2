@@ -1,12 +1,10 @@
-num = 151; //表示したい画像の数
+maxNum = 151; //表示したい画像の数
 
-async function callApi() {
-    for (i = 1; i <= num; i++) {
-        String(i); // 数値を文字に変換してURLにする
+async function makeData() {
+    for (i = 1; i <= maxNum; i++) {
         // APIを叩いてjsonを取得する
-        const res = await fetch("https://pokeapi.co/api/v2/pokemon/" + i);
-        const data = await res.json();
-        parseInt(i);
+        res = await fetch("https://pokeapi.co/api/v2/pokemon/" + i);
+        data = await res.json();
 
         // 個別のjsonデータを変数に入れる
         pokeImageUrl = data['sprites']['front_default']
@@ -56,4 +54,4 @@ async function callApi() {
     }
 }
 
-callApi();
+makeData();

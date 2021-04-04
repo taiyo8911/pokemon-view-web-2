@@ -1,7 +1,14 @@
-body {
+* {
     margin: 0;
     padding: 0;
+}
+
+body {
     background-color: rgb(243, 241, 241);
+    width: 100vw;
+    height: 100vw;
+    align-items: center;
+    justify-content: center;
 }
 
 h1 {
@@ -32,7 +39,7 @@ th {
 .tbl {
     border-collapse: collapse;
     border-spacing: 0;
-    width: 90%;
+    width: 100%;
     display: table;
     margin: 0 auto;
 }
