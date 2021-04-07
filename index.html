@@ -5,27 +5,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet"  href="css/pokemon-font.css">
     <title>ポケモンWeb図鑑2</title>
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <!-- 並び替え -->
-    <script src="https://www.w3schools.com/lib/w3.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
 </head>
 
 <body>
     <h1><a href=""><span class="outline">ポケモンWeb図鑑2</span></a></h1>
-    <table class="tbl" id="myTable">
-        <tr>
-            <th></th>
-            <th>番号</th>
-            <th>英語名</th>
-            <th id="height" onclick="w3.sortHTML('#myTable','.item', 'td:nth-child(4)')">高さ(m)▼</th>
-            <th id="weight" onclick="w3.sortHTML('#myTable','.item', 'td:nth-child(5)')">重さ(kg)▼</th>
-            <th id="type" onclick="w3.sortHTML('#myTable','.item', 'td:nth-child(6)')">タイプ▼</th>
-        </tr>
+
+    <table class="sort-tab">
+        <thead>
+            <tr>
+                <th></th>
+                <th>No</th>
+                <th>Name</th>
+                <th>たかさ(m)</th>
+                <th>おもさ(kg)</th>
+                <th>タイプ</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
     </table>
-    <script src="table.js"></script>
+
+
+    <button onclick="ReverseSort()">逆順</button>
+    <button onclick="HeightSort()">高さ</button>
+
+    
+    <script src="javascript/table.js"></script>
+    <!-- <script src="javascript/sort2.js"></script> -->
+    <script src="javascript/sort.js"></script>
 
 </body>
 
