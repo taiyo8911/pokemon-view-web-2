@@ -1,105 +1,70 @@
-num = 151; //表示したい画像の数
+const maxNum = 7; //表示したいデータ数
 
-async function callApi() {
-    for (i = 1; i <= num; i++) {
-        String(i); // 数値を文字に変換してURLにする
-        // APIを叩いてjsonを取得する
-        res = await fetch("https://pokeapi.co/api/v2/pokemon/" + i);
+async function callAPI() {
+    for (i = 1; i <= maxNum; i++) {
+        // APIでjsonを取得する
+        var res = await fetch("https://pokeapi.co/api/v2/pokemon-species/" + i + "/");
+        var data = await res.json();
+
+        // jsonを変数に入れていく
+        // ID、名前、URLを取得
+        var pokeId = data['id']
+        var pokeName = data['names'][0]['name']
+        var pokemonUrl = data['varieties'][0]['pokemon']['url']
+
+        // エンドポイントを変更する
+        res = await fetch(pokemonUrl)
         data = await res.json();
 
-        // 個別のjsonデータを変数に入れる
-        pokeImageUrl = data['sprites']['front_default']
-        pokeId = data['id']
-        pokeName = data['name']
-        pokeType = data['types'][0]['type']['name']
+        // 画像、タイプ、たかさ、おもさを取得
+        var pokeImageUrl = data['sprites']['front_default']
+        var pokeType = data['types'][0]['type']['name']
+        var pokeHeight = data['height'] / 10
+        var pokeWeight = data['weight'] / 10
 
         // HTMLを生成していく
-        // div要素を生成
-        var div = document.createElement('div');
+        // tr要素を生成
+        var tr = document.createElement('tr');
+        tr.id = 'tr' + i;
 
-        // img要素を生成
-        var img = document.createElement('img');
+        // img要素をtrに追加する
+        var img = document.createElement('img')
         img.src = pokeImageUrl; // 画像パスを追加
-        div.appendChild(img); // img要素をdiv要素の子要素に追加
+        tr.appendChild(img);
 
-        // idを表示
-        var id = document.createElement('p');
-        id.innerHTML = pokeId;
-        div.appendChild(id);
+        // 図鑑番号
+        var id = document.createElement('td');
+        id.textContent = pokeId;
 
-        // タイプを表示
-        var type = document.createElement('p');
-        type.innerHTML = pokeType;
-        div.appendChild(type);
+        tr.appendChild(id);
 
-        // 英語名を表示
-        var name = document.createElement('p');
-        name.innerHTML = pokeName;
-        div.appendChild(name);
+        // 英語名
+        var name = document.createElement('td');
+        name.textContent = pokeName;
+        name.className = "name";
+        tr.appendChild(name);
 
-        // jsonファイルを読み込んで、日本語の名前を取得する
-        $.getJSON("name_trans.json", function(data){
-            jName = data[i-2].ja;
+        // 高さ
+        var height = document.createElement('td');
+        height.textContent = pokeHeight;
+        height.id = "height" + i;
+        tr.appendChild(height);
 
-            // 日本語名を表示
-            var jn = document.createElement('p');
-            jn.innerHTML = jName;
-            div.appendChild(jn);
-        });
+        // 重さ
+        var weight = document.createElement('td');
+        weight.textContent = pokeWeight;
+        weight.id = "weight" + i;
+        tr.appendChild(weight);
 
-        // タイプによって背景色を変える（クラスを付与する）
-        switch (pokeType){
-        case 'grass':
-            div.className = 'grass';
-            break;
-        case 'fire':
-            div.className = 'fire';
-            break;
-        case 'water':
-            div.className = 'water';
-            break;
-        case 'bug':
-            div.className = 'bug';
-            break;
-        case 'normal':
-            div.className = 'normal';
-            break;
-        case 'poison':
-            div.className = 'poison';
-            break;
-        case 'electric':
-            div.className = 'electric';
-            break;
-        case 'ground':
-            div.className = 'ground';
-            break;
-        case 'fairy':
-            div.className = 'fairy';
-            break;
-        case 'fighting':
-            div.className = 'fighting';
-            break;
-        case 'psychic':
-            div.className = 'psychic';
-            break;
-        case 'rock':
-            div.className = 'rock';
-            break;
-        case 'ghost':
-            div.className = 'ghost';
-            break;
-        case 'ice':
-            div.className = 'ice';
-            break;
-        case 'dragon':
-            div.className = 'dragon';
-            break;
-        default:
-        }
+        // タイプ
+        var type = document.createElement('td');
+        type.textContent = pokeType;
+        type.id = "type" + i;
+        tr.appendChild(type);
 
-        // 生成したdiv要素を、wrapperに追加する
-        document.getElementById('wrapper').appendChild(div);
+        // 生成したtr要素を、#tbodyに追加する
+        document.getElementById('tbody').appendChild(tr);
     }
 }
 
-callApi();
+callAPI();

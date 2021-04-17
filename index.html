@@ -13,13 +13,19 @@
 <body>
     <h1><a href=""><span class="outline">ポケモンWeb図鑑2</span></a></h1>
 
+    <div class="buttons">
+        <button onclick="ReverseSort(), this.disabled = true;">Noで並び替え</button>
+        <button onclick="Sort('height'), this.disabled = true;">たかさで並び替え</button>
+        <button onclick="Sort('weight'), this.disabled = true;">おもさで並び替え</button>
+    </div>
+
     <table>
         <thead>
             <tr>
                 <th></th>
-                <th onclick="ReverseSort()">No</th>
+                <th>No</th>
                 <th>Name</th>
-                <th onclick="HeightSort()">たかさ(m)</th>
+                <th>たかさ(m)</th>
                 <th>おもさ(kg)</th>
                 <th>タイプ</th>
             </tr>
@@ -29,8 +35,7 @@
         </tbody>
     </table>
 
-    <script src="javascript/api.js"></script>
-    <!-- <script src="javascript/sort2.js"></script> -->
+    <script src="javascript/main.js"></script>
     <script src="javascript/sort.js"></script>
 
 </body>
