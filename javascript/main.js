@@ -1,4 +1,4 @@
-const maxNum = 7; //表示したいデータ数
+const maxNum = 151; //表示したいデータ数
 
 async function callAPI() {
     for (i = 1; i <= maxNum; i++) {
@@ -12,7 +12,7 @@ async function callAPI() {
         var pokeName = data['names'][0]['name']
         var pokemonUrl = data['varieties'][0]['pokemon']['url']
 
-        // エンドポイントを変更する
+        // エンドポイントを変更
         res = await fetch(pokemonUrl)
         data = await res.json();
 
@@ -41,7 +41,6 @@ async function callAPI() {
         // 英語名
         var name = document.createElement('td');
         name.textContent = pokeName;
-        name.className = "name";
         tr.appendChild(name);
 
         // 高さ
@@ -59,7 +58,6 @@ async function callAPI() {
         // タイプ
         var type = document.createElement('td');
         type.textContent = pokeType;
-        type.id = "type" + i;
         tr.appendChild(type);
 
         // 生成したtr要素を、#tbodyに追加する

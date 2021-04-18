@@ -27,14 +27,14 @@ a {
     text-decoration: none;
 }
 
-.buttons{
+.buttons {
     margin: 0 auto;
     background-color: red;
     text-align: center;
     margin: 20px;
 }
 
-.buttons button{
+.buttons button {
     cursor: pointer;
 }
 

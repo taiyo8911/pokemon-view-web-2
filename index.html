@@ -11,12 +11,12 @@
 </head>
 
 <body>
-    <h1><a href=""><span class="outline">ポケモンWeb図鑑2</span></a></h1>
+    <h1><a href="" onclick="location.reload(false);"><span class="outline">ポケモンWeb図鑑2</span></a></h1>
 
     <div class="buttons">
-        <button onclick="ReverseSort(), this.disabled = true;">Noで並び替え</button>
-        <button onclick="Sort('height'), this.disabled = true;">たかさで並び替え</button>
-        <button onclick="Sort('weight'), this.disabled = true;">おもさで並び替え</button>
+        <button id="sort-btn1" onclick="ReverseSort()">Noで並び替え</button>
+        <button id="sort-btn2" onclick="Sort('height')">たかさで並び替え</button>
+        <button id="sort-btn3" onclick="Sort('weight')">おもさで並び替え</button>
     </div>
 
     <table>
