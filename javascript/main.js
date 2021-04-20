@@ -1,4 +1,4 @@
-const maxNum = 151; //表示したいデータ数
+const maxNum = 15; //表示したいデータ数
 
 async function callAPI() {
     for (i = 1; i <= maxNum; i++) {
