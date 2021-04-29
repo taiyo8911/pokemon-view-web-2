@@ -16,7 +16,7 @@ async function callAPI() {
         res = await fetch(pokemonUrl)
         data = await res.json();
 
-        // 画像、タイプ、たかさ、おもさを取得
+        // 画像、たかさ、おもさを取得
         let pokeImageUrl = data['sprites']['front_default']
         let pokeHeight = data['height'] / 10
         let pokeWeight = data['weight'] / 10
@@ -37,7 +37,7 @@ async function callAPI() {
 
         tr.appendChild(id);
 
-        // 英語名
+        // 名前
         let name = document.createElement('td');
         name.textContent = pokeName;
         tr.appendChild(name);
