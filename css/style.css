@@ -8,6 +8,11 @@ body {
     font-family: 'pokemon-font', monospace;
 }
 
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
 h1 {
     text-align: center;
 }
@@ -49,7 +54,7 @@ table {
 
 thead {
     border: 1px solid white;
-    background-color: wheat!important;
+    background-color: wheat !important;
     vertical-align: inherit;
 }
 
