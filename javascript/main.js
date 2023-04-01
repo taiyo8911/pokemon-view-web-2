@@ -1,64 +1,70 @@
-const maxNum = 151; //表示したいデータ数
+//表示したいデータ数を定義
+const MAX_NUM = 10;
+
+async function getPokemonData(id) {
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}/`);
+    const speciesData = await res.json();
+    const pokemonUrl = speciesData.varieties[0].pokemon.url;
+    const pokemonRes = await fetch(pokemonUrl);
+    const pokemonData = await pokemonRes.json();
+    const pokeId = speciesData.id;
+    const pokeName = speciesData.names[0].name;
+    const pokeImageUrl = pokemonData.sprites.front_default;
+    const pokeHeight = pokemonData.height / 10;
+    const pokeWeight = pokemonData.weight / 10;
+
+    return {
+        id: pokeId,
+        name: pokeName,
+        imageUrl: pokeImageUrl,
+        height: pokeHeight,
+        weight: pokeWeight,
+    };
+}
+
+async function generateTableRow(id) {
+    const pokemonData = await getPokemonData(id);
+
+    const tr = document.createElement("tr");
+    tr.id = `tr${id}`;
+
+    const img = document.createElement("img");
+    img.src = pokemonData.imageUrl;
+    tr.appendChild(img);
+
+    const pokeId = document.createElement("td");
+    pokeId.textContent = pokemonData.id;
+    tr.appendChild(pokeId);
+
+    const name = document.createElement("td");
+    name.textContent = pokemonData.name;
+    tr.appendChild(name);
+
+    const height = document.createElement("td");
+    height.textContent = pokemonData.height;
+    height.id = `height${id}`;
+    tr.appendChild(height);
+
+    const weight = document.createElement("td");
+    weight.textContent = pokemonData.weight;
+    weight.id = `weight${id}`;
+    tr.appendChild(weight);
+
+    return tr;
+}
 
 async function callAPI() {
-    for (i = 1; i <= maxNum; i++) {
-        // APIでjsonを取得する
-        let res = await fetch("https://pokeapi.co/api/v2/pokemon-species/" + i + "/");
-        let data = await res.json();
+    const tableBody = document.getElementById("tbody");
 
-        // jsonを変数に入れていく
-        // ID、名前、URLを取得
-        let pokeId = data['id']
-        let pokeName = data['names'][0]['name']
-        let pokemonUrl = data['varieties'][0]['pokemon']['url']
-
-        // エンドポイントを変更
-        res = await fetch(pokemonUrl)
-        data = await res.json();
-
-        // 画像、たかさ、おもさを取得
-        let pokeImageUrl = data['sprites']['front_default']
-        let pokeHeight = data['height'] / 10
-        let pokeWeight = data['weight'] / 10
-
-        // HTMLを生成していく
-        // tr要素を生成
-        let tr = document.createElement('tr');
-        tr.id = 'tr' + i;
-
-        // img要素をtrに追加する
-        let img = document.createElement('img')
-        img.src = pokeImageUrl; // 画像パスを追加
-        tr.appendChild(img);
-
-        // 図鑑番号
-        let id = document.createElement('td');
-        id.textContent = pokeId;
-
-        tr.appendChild(id);
-
-        // 名前
-        let name = document.createElement('td');
-        name.textContent = pokeName;
-        tr.appendChild(name);
-
-        // 高さ
-        let height = document.createElement('td');
-        height.textContent = pokeHeight;
-        height.id = "height" + i;
-        tr.appendChild(height);
-
-        // 重さ
-        let weight = document.createElement('td');
-        weight.textContent = pokeWeight;
-        weight.id = "weight" + i;
-        tr.appendChild(weight);
-
-        
-
-        // 生成したtr要素を、#tbodyに追加する
-        document.getElementById('tbody').appendChild(tr);
+    const promises = [];
+    for (let i = 1; i <= MAX_NUM; i++) {
+        promises.push(generateTableRow(i));
     }
+
+    const trs = await Promise.all(promises);
+    trs.forEach((tr) => {
+        tableBody.appendChild(tr);
+    });
 }
 
 callAPI();

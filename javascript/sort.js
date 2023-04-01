@@ -1,46 +1,62 @@
-// 並び替え用に、ランキングをつける関数を定義
-const ranking = (arr, num) => [1, 2].indexOf(num) < 0 ? null : arr.map((x, y, z) => z.filter(w => (num == 2) ? w < x : w > x).length + 1);
+// クリックされたボタンに対応するカラムを取得する
+const COLUMN_INDEXES = {
+    "sort-btn1": 4,
+    "sort-btn2": 5,
+};
 
+let sortOrder = "asc";
+let sortType = COLUMN_INDEXES["sort-btn1"];
 
-
-// たかさ、おもさで並び替えボタンが押されたら実行
-function Sort(x) {
-    // 押されたボタン以外のボタンを無効化する
-    document.getElementById("sort-btn1").disabled = true;
-    document.getElementById("sort-btn2").disabled = true;
-
-
-    let data;
-    let dataArr = [];
-    let rank = [];
-    let lineData = [];
-    let index = [];
-
-
-    // 各行のデータを配列に保管する。
-    for (i = 0; i < maxNum; i++) {
-        lineData[i] = document.getElementById("tr" + (i + 1)).innerHTML;
-    }
-
-    // データを比較するため、全データを配列に入れる
-    for (i = 0; i < maxNum; i++) {
-        data = document.getElementById(x + (i + 1)).innerText;
-        dataArr[i] = Number(data);
-    }
-
-
-    // ランキング関数を実行（引数：1は降順、2は昇順）
-    rank = ranking(dataArr, 1);
-
-
-    for (i = 1; i < rank.length + 1; i++) {
-        index.push(rank.indexOf(i));
-    }
-    
-    // 並び替え結果を書き出す
-    for (i = 0; i < lineData.length; i++) {
-        document.getElementById("tr" + (i + 1)).innerHTML = lineData[index[i]];
-    }
-
-    
+function getSortColumn(btnId) {
+    return COLUMN_INDEXES[btnId];
 }
+
+function sortTable(sortType, sortOrder) {
+    const rows = Array.from(document.querySelectorAll("tbody tr"));
+
+    const sortedRows = rows.sort((a, b) => {
+        const aData = a.querySelector(`td:nth-child(${sortType})`).innerText;
+        const bData = b.querySelector(`td:nth-child(${sortType})`).innerText;
+
+        if (aData && bData) {
+            if (sortType === 4 || sortType === 5) {
+                return (sortOrder === "asc" ? parseFloat(aData) - parseFloat(bData) : parseFloat(bData) - parseFloat(aData));
+            } else {
+                return (sortOrder === "asc" ? aData.localeCompare(bData) : bData.localeCompare(aData));
+            }
+        } else {
+            return 0;
+        }
+    });
+
+    const tableBody = document.querySelector("tbody");
+    tableBody.innerHTML = "";
+
+    sortedRows.forEach((row) => {
+        tableBody.appendChild(row);
+    });
+}
+
+// イベントリスナーを登録する
+const sortBtn1 = document.getElementById("sort-btn1");
+const sortBtn2 = document.getElementById("sort-btn2");
+
+sortBtn1.addEventListener("click", () => {
+    if (sortType === COLUMN_INDEXES["sort-btn1"]) {
+        sortOrder = (sortOrder === "asc" ? "desc" : "asc");
+    } else {
+        sortOrder = "asc";
+    }
+    sortType = COLUMN_INDEXES[sortBtn1.id];
+    sortTable(sortType, sortOrder);
+});
+
+sortBtn2.addEventListener("click", () => {
+    if (sortType === COLUMN_INDEXES["sort-btn2"]) {
+        sortOrder = (sortOrder === "asc" ? "desc" : "asc");
+    } else {
+        sortOrder = "asc";
+    }
+    sortType = COLUMN_INDEXES[sortBtn2.id];
+    sortTable(sortType, sortOrder);
+});
