@@ -1,41 +1,51 @@
 <!DOCTYPE html>
 <html lang="ja">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/pokemon-font.css">
-    <title>ポケモンWeb図鑑2</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/pokemon-font.css">
+        <title>ポケモンWeb図鑑2</title>
+    </head>
 
-<body>
-    <h1><a href="" onclick="location.reload(true);"><span class="outline">ポケモンWeb図鑑2</span></a></h1>
+    <body>
 
-    <div class="buttons">
-        <button id="sort-btn1" onclick="Sort('height')">たかさで並び替え</button>
-        <button id="sort-btn2" onclick="Sort('weight')">おもさで並び替え</button>
-    </div>
+        <div class="container">
 
-    <table>
-        <thead>
-            <tr>
-                <th></th>
-                <th>No</th>
-                <th>Name</th>
-                <th>たかさ(m)</th>
-                <th>おもさ(kg)</th>
-            </tr>
-        </thead>
-        <tbody id="tbody">
+            <header>
+                <h1><a href="" onclick="location.reload(true);"><span class="outline">ポケモンWeb図鑑2</span></a></h1>
 
-        </tbody>
-    </table>
+                <div class="buttons">
+                    <button id="sort-btn1">たかさで並び替え</button>
+                    <button id="sort-btn2">おもさで並び替え</button>
+                </div>
+            </header>
 
-    <script src="javascript/main.js"></script>
-    <script src="javascript/sort.js"></script>
+            <main>
 
-</body>
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>No</th>
+                            <th>Name</th>
+                            <th>たかさ(m)</th>
+                            <th>おもさ(kg)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+
+                    </tbody>
+                </table>
+            </main>
+
+        </div>
+
+        <script src="javascript/main.js"></script>
+        <script src="javascript/sort.js"></script>
+
+    </body>
 
 </html>
