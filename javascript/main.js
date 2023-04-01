@@ -1,5 +1,5 @@
 //表示したいデータ数を定義
-const MAX_NUM = 10;
+const MAX_NUM = 151;
 
 async function getPokemonData(id) {
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}/`);
